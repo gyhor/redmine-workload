@@ -32,10 +32,10 @@ module Workload
            :order => "#{User.table_name}.lastname ASC",
            :conditions => 
               ["#{Issue.table_name}.project_id = ?
-              AND #{Issue.table_name}.start_date != ?
-              AND #{Issue.table_name}.due_date  != ?
-              AND #{Issue.table_name}.estimated_hours  != ?
-              AND #{Issue.table_name}.assigned_to_id = ?", project, "", "", "", self.id]
+              AND #{Issue.table_name}.start_date is not null 
+              AND #{Issue.table_name}.due_date  is not null
+              AND #{Issue.table_name}.estimated_hours  is not null
+              AND #{Issue.table_name}.assigned_to_id = ?", project, self.id]
           )
 
       end

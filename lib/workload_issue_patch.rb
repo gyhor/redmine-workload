@@ -16,10 +16,10 @@ module Workload
             :all,
             :conditions => [
               "#{Issue.table_name}.project_id = ?
-              AND #{Issue.table_name}.start_date != ?
-              AND #{Issue.table_name}.due_date  != ?
-              AND #{Issue.table_name}.estimated_hours  != ?",
-              project, "", "", ""],
+              AND #{Issue.table_name}.start_date is not null
+              AND #{Issue.table_name}.due_date is not null 
+              AND #{Issue.table_name}.estimated_hours  is not null",
+              project],
             :joins => [:assigned_to],
             :order => "#{User.table_name}.lastname ASC"
           )
